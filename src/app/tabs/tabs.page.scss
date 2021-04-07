@@ -1,0 +1,24 @@
+ion-tab-bar{
+    --background: var(--ion-color-dark); //bottom tab colo
+}
+
+.player //mini player at bottom of screen
+{ //height of total mini player
+    background: var(--ion-color-dark); //color of mini player
+    font-family: 'Spotify';
+    color: #fff; //font color
+    font-size: small;
+    img{
+        height: 55px;
+    }
+
+.progress-bar{ //makes full screen bar
+    width: 100%;
+    height: 2px;
+    background: #707077 ; //progress bcg color
+    .progress{ //lil play line
+        background: #fc6f11 ; //progress color
+        height: 100%;  
+    } 
+}
+ }
