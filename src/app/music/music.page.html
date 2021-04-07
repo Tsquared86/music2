@@ -13,9 +13,9 @@
 
 <ion-content>
 
-  <ion-row class="ion-no-padding" *ngFor="let entry of data; let isFirst = first;">
+  <ion-row class="ion-no-padding" *ngFor="let category of categories; let isFirst = first;">
     <ion-col size="9">
-      <h2 class="section-header">{{entry.title}} </h2>
+      <h2 class="section-header">{{category.title}} </h2>
     </ion-col>
     
     <ion-col size ="3"> <!--setting-->
@@ -34,7 +34,7 @@
     
       <ion-slides [options]="opts"> <!--options 4 sliders-->
         
-        <ion-slide *ngFor="let album of entry.albums"  tappable (click)="openAlbum(album)"> <!--if there are entries they are clickable-->
+        <ion-slide *ngFor="let album of category.albums"  tappable (click)="openAlbum(album)"> <!--if there are entries they are clickable-->
           <img [src]="album.art">  <!--get the images from here-->
           <span class="title">{{ album.name}}</span> <!--get the title from here + span class-->
         </ion-slide>

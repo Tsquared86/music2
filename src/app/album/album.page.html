@@ -1,29 +1,31 @@
 <ion-header>
-  <ion-toolbar   > <!--[style.--background]="data.backgroundColor"-->
+  <ion-toolbar>
+    <!--[style.--background]="data.backgroundColor"-->
     <ion-buttons slot="start">
       <ion-back-button text="" color="light" defaultHref="/tabs/music"></ion-back-button>
     </ion-buttons>
-    <ion-title color="white">{{ album.title }}</ion-title>
+    <ion-title color="white">{{ album.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
- 
-<ion-content scrollEvents="true"  [fullscreen]="true" [appImageFade]="cover" *ngIf="data" > <!--[style.--background]="data.backgroundColor"-->
-  
- 
+
+<ion-content scrollEvents="true" [fullscreen]="true" [appImageFade]="cover">
+  <!--[style.--background]="data.backgroundColor"-->
+
+
   <!-- Image of the album -->
   <div class="ion-text-center image-box" #cover>
-    <img [src]="album.art" *ngIf="data">
+    <img [src]="album.art">
   </div>
- 
+
   <!-- Rest of the page content -->
   <div class="main">
- 
+
     <!-- General information -->
     <ion-row>
       <ion-col size="12" class="album-info">
-        <p> {{ album.artist }}  </p>
-        
-        <span>Album {{ album.title }} · {{ data.released }}</span>  
+        <p> {{ album.artist.name }} </p>
+
+        <span>Album {{ album.artist.name }} · {{ album.year }}</span>
       </ion-col>
       <ion-col size="8" class="ion-text-left ion-no-padding">
         <ion-button fill="clear" class="ion-no-margin">
@@ -42,12 +44,12 @@
         </ion-button>
       </ion-col>
     </ion-row>
- 
+
     <!-- List of tracks -->
     <ion-list>
-      <ion-item *ngFor="let t of data.tracks" lines="none">
+      <ion-item *ngFor="let t of album.tracks" lines="none">
         <ion-label>{{ t.title }}
-          <p>{{ data.artist }}</p>
+          <p>{{ album.artist }}</p>
         </ion-label>
         <ion-icon slot="end" size="small" name="ellipsis-horizontal" color="light"></ion-icon>
       </ion-item>

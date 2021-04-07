@@ -17,24 +17,24 @@ styleUrls: ['music.page.scss']
 
 export class MusicPage {
 
-  data = [
+  categories = [
     {
       title: 'Discog' ,
       albums: []
     },
-    {
-    title: 'Unreleased Jams',
-    albums: recentlyPlayed as any //json of catelog
+  //   {
+  //   title: 'Unreleased Jams',
+  //   albums: []
 
-  },
-  {
-    title: 'Singles',
-    albums: heavyRotation as any
-  },
-  {
-    title: 'Albums/EPs' ,
-    albums: jumpBackIn as any
-  } 
+  // },
+  // {
+  //   title: 'Singles',
+  //   albums: []
+  // },
+  // {
+  //   title: 'Albums/EPs' ,
+  //   albums: []
+  // } 
   
 ];
 
@@ -54,14 +54,12 @@ url = 'https://settrippn.com/tunes/server/json.server.php';
 
 runHttp(){  //promise to get data then its data which we assign as an array fille by the get request
   this.http.get(this.url, {params:{"action":"albums", "auth": this.authKey, "include": "songs"}}).toPromise().then((data: Object[]) => {
-     
-    console.log(data);
-   
-    for (let album in data)
-      if (data.hasOwnProperty(album)){
-        this.data[0].albums = data;
-        console.log("hi");
-      } 
+        
+  //  for (let album in data)
+   //   if (data.hasOwnProperty(album)){
+        this.categories[0].albums = data;
+   //     console.log("hi");
+   //   } 
   });
 }
 
@@ -70,6 +68,7 @@ openAlbum(album) {
   const titleEscaped = (album.name);
   console.log('titleEscaped: ', titleEscaped);
   this.router.navigateByUrl(`/tabs/music/${titleEscaped}`);
+  console.log(album);
 }
 
 
