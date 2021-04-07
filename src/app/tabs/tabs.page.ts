@@ -7,15 +7,13 @@ import { IonTabs } from '@ionic/angular';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  @ViewChild (IonTabs) tabs:IonTabs;
+  @ViewChild(IonTabs) tabs: IonTabs;
   selected = "";
   progress = 42;
 
-  constructor() {}
+  constructor() { }
 
-  setSelectedTab(){
-    console.log('CALLED');
+  setSelectedTab() {
     this.selected = this.tabs.getSelected(); //returns name of tab
-
   }
 }

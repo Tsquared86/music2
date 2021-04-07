@@ -2,20 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-//import albums from '../../assets/mockdata/albums';
-
-
-
-
-/*https.get(url,function(response){
-
-  response.on("data", function(declarations){
-    var 
-  })
-
-} */
-
-
 @Component({
   selector: 'app-album',
   templateUrl: './album.page.html',
@@ -30,23 +16,19 @@ export class AlbumPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
-
-
     this.http.get(this.url, { params: { "action": "albums", "auth": this.authKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
       const title = this.activatedRoute.snapshot.paramMap.get('title');
       const decodedTitle = decodeURIComponent(title);
       this.album = data.filter(d => {
         return d['name'] == decodedTitle
       })[0]
-      console.log(this.album);
     });
 
-
     // Helper function for image names
-    // dasherize(string) {
-    //   return string.replace(/[A-Z]/g, function (char, index) {
-    //     return (index !== 0 ? '-' : '') + char.toLowerCase();
-    //   });
-  };
-
+    let dasherize = (string) => {
+      return string.replace(/[A-Z]/g, function (char, index) {
+        return (index !== 0 ? '-' : '') + char.toLowerCase();
+      });
+    };
+  }
 }
