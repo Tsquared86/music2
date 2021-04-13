@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-back-button text="" color="light" defaultHref="/tabs/music"></ion-back-button>
     </ion-buttons>
-    <ion-title color="white">{{ album?.name }}</ion-title>
+    <ion-title color="white">{{ dataT?.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +24,7 @@
       <ion-col size="12" class="album-info">
         <p> {{ album?.artist?.name }} </p>
 
-        <span>Album {{ album?.artist?.name }} · {{ album?.year }}</span>
+        <span>{{ album?.name }} · {{ album?.year }}</span>
       </ion-col>
       <ion-col size="8" class="ion-text-left ion-no-padding">
         <ion-button fill="clear" class="ion-no-margin">

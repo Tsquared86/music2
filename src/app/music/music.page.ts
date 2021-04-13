@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import recentlyPlayed from '../../assets/mockdata/recentlyPlayed.json';
-import heavyRotation from '../../assets/mockdata/heavyRotation.json';
-import jumpBackIn from '../../assets/mockdata/jumpBackIn.json';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from "@angular/router";
+import { DataService } from '../core/data.service';
 
 
 @Component({
@@ -18,10 +16,7 @@ import { ActivatedRoute } from "@angular/router";
 export class MusicPage {
 
   categories = [
-    {
-      title: 'Discog',
-      albums: []
-    },
+
     {
       title: 'Unreleased Jams',
       albums: []
@@ -45,20 +40,65 @@ export class MusicPage {
     freeMode: true
   };
 
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) { }
 
-  authKey = '2dedef310d410071f9ec09a0f34a482e';
+  discog: any;
+  authKey = '3b4187adefc05df9c4e8a848c3d296e1';
   url = 'https://settrippn.com/tunes/server/json.server.php';
+  albums: any;
+  songs: any;
+  single: any[];
 
-  runHttp() {  //promise to get data then its data which we assign as an array fille by the get request
-    this.http.get(this.url, { params: { "action": "albums", "auth": this.authKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
+  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient) {
 
-      this.categories[0].albums = data;
-    });
+
   }
 
+  ngOnInit() {
+    //gt discog from data
+    this.discog = this.dataService.getDiscog();
+    console.log(this.discog);
+    // set albums to place
+    this.categories[2].albums = this.discog;
+
+
+
+    this.single = this.discog.filter(d => {
+      return d['songcount'] == 1
+    })[0]
+    console.log(this.single);
+
+    // set singles
+    this.categories[1].albums = this.single;
+  }
+
+
+  // getAlbums() {  //promise to get data then its data which we assign as an array fille by the get request
+  //   this.http.get(this.url, { params: { "action": "albums", "auth": this.authKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
+
+  //     console.log(data);
+
+
+
+  //   });
+
+  // }
+
+
+
+
+  getSingles() {
+
+    // $.grep(this.discog, function (s) {
+    //   return s.name <= 1
+
+    // });
+  }
+
+
   openAlbum(album) {
-    const titleEscaped = (album.name);
+    console.log('album is', album);
+    const titleEscaped = encodeURIComponent(album.name);
+    console.log('this the title ', titleEscaped);
     this.router.navigateByUrl(`/tabs/music/${titleEscaped}`);
   }
 
@@ -68,8 +108,5 @@ export class MusicPage {
     });
   };
 
-  ngOnInit() {
 
-    this.runHttp();
-  }
 }

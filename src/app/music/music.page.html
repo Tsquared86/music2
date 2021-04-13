@@ -1,5 +1,6 @@
 <ion-header translucent>
-  <ion-toolbar > <!--fav bar-->
+  <ion-toolbar>
+    <!--fav bar-->
     <ion-segment value="all">
       <ion-segment-button value="all">
         <ion-label>All</ion-label>
@@ -8,7 +9,7 @@
         <ion-label>Favorites</ion-label>
       </ion-segment-button>
     </ion-segment>
-  </ion-toolbar> 
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -17,29 +18,34 @@
     <ion-col size="9">
       <h2 class="section-header">{{category.title}} </h2>
     </ion-col>
-    
-    <ion-col size ="3"> <!--setting-->
-      <ion-button  *ngIf = "isFirst" fill = "clear" color = white>
-        <ion-icon name= "settings-outline" slot = "icon-only">
+
+    <ion-col size="3">
+      <!--setting-->
+      <ion-button *ngIf="isFirst" fill="clear" color=white>
+        <ion-icon name="settings-outline" slot="icon-only">
 
         </ion-icon>
 
       </ion-button>
 
-    
-    </ion-col>  
+
+    </ion-col>
 
 
-    
-    
-      <ion-slides [options]="opts"> <!--options 4 sliders-->
-        
-        <ion-slide *ngFor="let album of category.albums"  tappable (click)="openAlbum(album)"> <!--if there are entries they are clickable-->
-          <img [src]="album.art">  <!--get the images from here-->
-          <span class="title">{{ album.name}}</span> <!--get the title from here + span class-->
-        </ion-slide>
-   
-      </ion-slides> 
-     
-  </ion-row> 
- </ion-content>
+
+
+    <ion-slides [options]="opts">
+      <!--options 4 sliders-->
+
+      <ion-slide *ngFor="let album of category.albums" tappable (click)="openAlbum(album)">
+        <!--if there are entries they are clickable-->
+        <img [src]="album.art">
+        <!--get the images from here-->
+        <span class="title">{{ album.name }}</span>
+        <!--get the title from here + span class-->
+      </ion-slide>
+
+    </ion-slides>
+
+  </ion-row>
+</ion-content>
