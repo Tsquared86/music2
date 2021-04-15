@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
+import { MusicPlayer } from '../core/musicPlayer.services';
 
 import { DataService } from './data.service';
 
@@ -15,6 +16,6 @@ import { DataService } from './data.service';
     IonicModule,
     HttpClientModule
   ],
-  providers: [DataService]
+  providers: [DataService, MusicPlayer]
 })
 export class CoreModule { }
