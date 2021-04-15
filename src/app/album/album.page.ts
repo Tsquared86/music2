@@ -26,7 +26,7 @@ export class AlbumPage implements OnInit {
   // value = 0;
   // @ViewChild('range') range: IonRange;
 
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private dataService: DataService) { }
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private dataService: DataService, private MusicPlayer) { }
 
 
   // start(track: any) { //check if playing
