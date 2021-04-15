@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-back-button text="" color="light" defaultHref="/tabs/music"></ion-back-button>
     </ion-buttons>
-    <ion-title color="white">{{ dataT?.name }}</ion-title>
+    <ion-title color="white">{{ album?.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,9 +22,9 @@
     <!-- General information -->
     <ion-row>
       <ion-col size="12" class="album-info">
-        <p> {{ album?.artist?.name }} </p>
+        <p> {{ album?.name }} </p>
 
-        <span>{{ album?.name }} · {{ album?.year }}</span>
+        <span> {{ album?.year }}</span>
       </ion-col>
       <ion-col size="8" class="ion-text-left ion-no-padding">
         <ion-button fill="clear" class="ion-no-margin">
@@ -42,14 +42,15 @@
           <ion-icon name="play-circle" size="large" color="primary" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>
-    </ion-row>
+    </ion-row>`
 
     <!-- List of tracks -->
     <ion-list>
-      <ion-item *ngFor="let t of album?.tracks" lines="none">
-        <ion-label>{{ t.title }}
+      <ion-item button *ngFor="let track of album?.tracks" lines="none" tappable (click)="start(track)">
+        <ion-label [color]="track == activeTrack ? 'success' : 'dark'">{{ track.title }}
           <p>{{ album?.artist.name }}</p>
         </ion-label>
+
         <ion-icon slot="end" size="small" name="ellipsis-horizontal" color="light"></ion-icon>
       </ion-item>
     </ion-list>

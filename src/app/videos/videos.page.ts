@@ -57,15 +57,17 @@ export class VideosPage implements OnInit {
 
   getInterview() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.interviews, } }).toPromise().then((data: any[]) => {
-      this.categories[2].videos = data;
-      console.log(data);
+      //this.categories[2].videos = data;
+      console.log('interviews', data);
 
     });
   }
 
   getPodcast() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, } }).toPromise().then((data: any[]) => {
-      this.categories[3].videos = data;
+
+
+      //this.categories[3].videos = data;
       console.log(data);
 
     });
@@ -73,14 +75,11 @@ export class VideosPage implements OnInit {
   }
 
 
-  discog: any[];
 
 
 
-  openAlbum(album) {
-    const titleEscaped = (album.name);
-    this.router.navigateByUrl(`/tabs/music/${titleEscaped}`);
-  }
+
+
 
 
 

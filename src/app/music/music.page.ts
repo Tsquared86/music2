@@ -47,7 +47,7 @@ export class MusicPage {
   albums: any;
   songs: any;
   single: any[];
-
+  secret: any[];
   constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient) {
 
 
@@ -57,43 +57,31 @@ export class MusicPage {
     //gt discog from data
     this.discog = this.dataService.getDiscog();
     console.log(this.discog);
+
+    this.albums = this.discog.filter(a => {
+      return a['songcount'] >= 2
+    })
+    console.log("albb", this.albums);
+
     // set albums to place
-    this.categories[2].albums = this.discog;
+    this.categories[2].albums = this.albums;
 
 
+    // //get secret
+    // this.secret = this.discog.filter(f => {
+    //   return f['type'] == 'remix'
+    // })
+    // console.log(this.secret);
 
+    //get singles
     this.single = this.discog.filter(d => {
       return d['songcount'] == 1
-    })[0]
+    })
     console.log(this.single);
 
     // set singles
     this.categories[1].albums = this.single;
   }
-
-
-  // getAlbums() {  //promise to get data then its data which we assign as an array fille by the get request
-  //   this.http.get(this.url, { params: { "action": "albums", "auth": this.authKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
-
-  //     console.log(data);
-
-
-
-  //   });
-
-  // }
-
-
-
-
-  getSingles() {
-
-    // $.grep(this.discog, function (s) {
-    //   return s.name <= 1
-
-    // });
-  }
-
 
   openAlbum(album) {
     console.log('album is', album);
