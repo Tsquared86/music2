@@ -19,12 +19,12 @@
     <ion-slides [options]="opts">
       <!--options 4 sliders-->
 
-      <ion-slide *ngFor="let playlist of category.videos.items" tappable (click)="playVid()">
+      <ion-slide *ngFor="let playlist of category.videos.items" tappable (click)="openVideo(video)">
         <!--if there are entries they are clickable-->
         <img [src]="playlist.snippet.thumbnails.standard?.url">
         <!--get the images from here-->
 
-        <span class="title">{{playlist.snippet.title}}</span>
+        <p><span class="title">{{playlist.snippet.title}}</span> </p>
         <!--get the title from here + span class-->
       </ion-slide>
 

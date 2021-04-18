@@ -94,9 +94,10 @@ export class VideosPage implements OnInit {
 
   }
 
-  playVid() {
+  openVideo(video) {
 
-    this.youtube.openVideo('myvideoid');
+    this.youtube.openVideo('pass-video-id');
+    console.log(video);
   }
 
 

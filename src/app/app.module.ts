@@ -10,7 +10,6 @@ import { VideosPage } from './videos/videos.page';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
 
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
