@@ -1,15 +1,6 @@
 <ion-header translucent>
   <ion-toolbar>
-    <!-- <ion-title>Toeknee Tee TV</ion-title> -->
-    <!-- fav bar -->
-    <ion-segment value="all">
-      <ion-segment-button value="all">
-        <ion-label>All</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        <ion-label>Favorites</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+
   </ion-toolbar>
 </ion-header>
 
@@ -20,17 +11,7 @@
       <h2 class="section-header">{{category.title}} </h2>
     </ion-col>
 
-    <ion-col size="3">
-      <!--setting-->
-      <ion-button *ngIf="isFirst" fill="clear" color=white>
-        <ion-icon name="settings-outline" slot="icon-only">
 
-        </ion-icon>
-
-      </ion-button>
-
-
-    </ion-col>
 
 
 
@@ -38,11 +19,12 @@
     <ion-slides [options]="opts">
       <!--options 4 sliders-->
 
-      <ion-slide *ngFor="let playlist of category.videos" tappable (click)="openAlbum(album)">
+      <ion-slide *ngFor="let playlist of category.videos.items" tappable (click)="playVid()">
         <!--if there are entries they are clickable-->
-        <img [src]="playlist.items.snippet.standard.url">
+        <img [src]="playlist.snippet.thumbnails.standard?.url">
         <!--get the images from here-->
-        <span class=" title"></span>
+
+        <span class="title">{{playlist.snippet.title}}</span>
         <!--get the title from here + span class-->
       </ion-slide>
 

@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AlbumPageRoutingModule } from './album-routing.module';
-import { MusicPlayer } from '../core/musicPlayer.services';
 
 import { AlbumPage } from './album.page';
 import { SharedDirectivesModule } from '../directives/shared-directives.module';
@@ -17,7 +16,7 @@ import { SharedDirectivesModule } from '../directives/shared-directives.module';
     IonicModule,
     AlbumPageRoutingModule,
     SharedDirectivesModule,
-    MusicPlayer
+
   ],
   declarations: [AlbumPage]
 })

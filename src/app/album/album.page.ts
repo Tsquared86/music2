@@ -14,8 +14,7 @@ import { MusicPlayer } from '../core/musicPlayer.services';
 export class AlbumPage implements OnInit {
 
   album = null;
-  authKey = '3b4187adefc05df9c4e8a848c3d296e1';
-  url = 'https://settrippn.com/tunes/server/json.server.php';
+
   discog: any;
   // activeTrack: any[] = null;
 
@@ -26,7 +25,7 @@ export class AlbumPage implements OnInit {
   // value = 0;
   // @ViewChild('range') range: IonRange;
 
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private dataService: DataService, private MusicPlayer: MusicPlayer) { }
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private dataService: DataService, private musicPlayer: MusicPlayer) { }
 
 
   // start(track: any) { //check if playing
@@ -84,8 +83,6 @@ export class AlbumPage implements OnInit {
     this.discog = this.dataService.getDiscog();
 
     console.log('this album is', this.discog);
-    //this.filterSingles();
-    // this.http.get(this.url, { params: { "action": "albums", "auth": this.authKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
     const title = this.activatedRoute.snapshot.paramMap.get('title');
     const decodedTitle = decodeURIComponent(title);
     console.log(title);

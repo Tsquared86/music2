@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonTabs } from '@ionic/angular';
+import { MusicPlayer } from '../core/musicPlayer.services';
+
+
 
 @Component({
   selector: 'app-tabs',
@@ -11,7 +14,7 @@ export class TabsPage {
   selected = "";
   progress = 10;
 
-  constructor() { }
+  constructor(private musicPlayer: MusicPlayer) { }
 
   setSelectedTab() {
     this.selected = this.tabs.getSelected(); //returns name of tab

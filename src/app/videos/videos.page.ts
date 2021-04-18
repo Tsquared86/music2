@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from "@angular/router";
 import 'rxjs/add/operator/map';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
 @Component({
   selector: 'app-videos',
@@ -43,7 +44,7 @@ export class VideosPage implements OnInit {
     freeMode: true
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private youtube: YoutubeVideoPlayer) { }
 
   key = 'd46787d8e471fb4e3216fb4dd001bffe';
   url = 'https://www.googleapis.com/youtube/v3/playlistItems';
@@ -55,26 +56,48 @@ export class VideosPage implements OnInit {
   live = 'PLnRlWDKv1d2WNH497flm9BJewQDzNQtUr';
 
 
+
   getInterview() {  //promise to get data then its data which we assign as an array fille by the get request
-    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.interviews, } }).toPromise().then((data: any[]) => {
-      //this.categories[2].videos = data;
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.interviews, } }).toPromise().then((data: any) => {
+      this.categories[2].videos = data;
       console.log('interviews', data);
 
     });
   }
 
+  getClips() {  //promise to get data then its data which we assign as an array fille by the get request
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.musicVids, } }).toPromise().then((data: any) => {
+      this.categories[0].videos = data;
+      console.log('clips', data);
+
+    });
+  }
+
+  getLive() {  //promise to get data then its data which we assign as an array fille by the get request
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.live, } }).toPromise().then((data: any) => {
+      this.categories[1].videos = data;
+      console.log('live', data);
+
+    });
+  }
+
   getPodcast() {  //promise to get data then its data which we assign as an array fille by the get request
-    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, } }).toPromise().then((data: any[]) => {
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, } }).toPromise().then((data: any) => {
 
 
-      //this.categories[3].videos = data;
-      console.log(data);
+      this.categories[3].videos = data;
+      console.log('podcast', data);
 
     });
 
+
+
   }
 
+  playVid() {
 
+    this.youtube.openVideo('myvideoid');
+  }
 
 
 
@@ -87,9 +110,10 @@ export class VideosPage implements OnInit {
   ngOnInit() {
 
     // this.dataService.getAlbums()
-
+    this.getClips();
     this.getInterview();
     this.getPodcast();
+    this.getLive();
   }
 
 }

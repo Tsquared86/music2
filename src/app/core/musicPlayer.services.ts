@@ -9,7 +9,7 @@ export class MusicPlayer {
     public currentTrack: any;
 
 
-    activeTrack: any[] = null;
+    public activeTrack: any[] = null;
 
 
     player: Howl = null;
@@ -39,6 +39,7 @@ export class MusicPlayer {
         });
 
         this.player.play();
+
     }
 
 
