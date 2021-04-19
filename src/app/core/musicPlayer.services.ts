@@ -42,6 +42,10 @@ export class MusicPlayer {
 
     }
 
+    getTrack() {
+
+        return this.activeTrack;
+    }
 
     togglePlayer(pause) { //when we push pause it either pauses it or plays
 

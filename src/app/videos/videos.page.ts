@@ -5,6 +5,8 @@ import { ActivatedRoute } from "@angular/router";
 import 'rxjs/add/operator/map';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
+
+
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.page.html',
@@ -96,8 +98,9 @@ export class VideosPage implements OnInit {
 
   openVideo(video) {
 
-    this.youtube.openVideo('pass-video-id');
     console.log(video);
+    // window.open('https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId);
+
   }
 
 

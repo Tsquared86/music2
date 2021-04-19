@@ -1,0 +1,41 @@
+*{
+    font-weight: bold;
+}
+
+ion-item {
+    ion-thumbnail {
+        img {
+            border-radius: 10px;
+        }
+    }
+    ion-label {
+        h2,
+        p {
+            font-weight: bold;
+        }
+    }
+}
+
+
+.section-header {
+    color: #fff;
+    font-family: 'Spotify';
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+ 
+.title {
+    color: #fff;
+    font-family: 'Spotify';
+    font-size: small;
+}
+ 
+ion-slide {
+    display: block;
+    text-align: left;
+}
+ 
+ion-slides {
+    margin-bottom: 20px;
+}
