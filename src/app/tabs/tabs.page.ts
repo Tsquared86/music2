@@ -13,12 +13,15 @@ export class TabsPage {
   @ViewChild(IonTabs) tabs: IonTabs;
   selected = "";
   progress = 10;
+  track: any;
 
   constructor(private musicPlayer: MusicPlayer) { }
 
-  //const source = require('../core/musicPlayer.services');
-  current = this.musicPlayer.activeTrack;
+  ngOnit() {
+    this.track = this.musicPlayer.getTrack();
 
+
+  }
   setSelectedTab() {
     this.selected = this.tabs.getSelected(); //returns name of tab
   }

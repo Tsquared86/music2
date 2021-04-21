@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from "@angular/router";
 import { DataService } from '../core/data.service';
-
+import { MusicPlayer } from '../core/musicPlayer.services';
 
 @Component({
   selector: 'app-music',
@@ -48,7 +48,7 @@ export class MusicPage {
   songs: any;
   single: any[];
   secret: any[];
-  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient, private musicPlayer: MusicPlayer) {
 
 
   }

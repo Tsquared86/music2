@@ -6,10 +6,10 @@ import { IonRange } from '@ionic/angular';
 @Injectable()
 export class MusicPlayer {
 
-    public currentTrack: any;
 
 
-    public activeTrack: any[] = null;
+
+    public activeTrack: any = null;
 
 
     player: Howl = null;
@@ -30,7 +30,7 @@ export class MusicPlayer {
                 this.isPlaying = true;
                 this.activeTrack = track; //keeps up with current track
                 this.updateProgress();
-                console.log('current track', track);
+                console.log('active track', track);
             },
 
             onend: () => {
@@ -42,7 +42,7 @@ export class MusicPlayer {
 
     }
 
-    getTrack() {
+    public getTrack() {
 
         return this.activeTrack;
     }

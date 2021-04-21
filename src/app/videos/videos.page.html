@@ -21,7 +21,7 @@
 
       <ion-slide *ngFor="let playlist of category.videos.items" tappable (click)="openVideo(video)">
         <!--if there are entries they are clickable-->
-        <img [src]="playlist.snippet.thumbnails.standard?.url">
+        <img [src]="playlist.snippet.thumbnails.high?.url">
         <!--get the images from here-->
 
         <p><span class="title">{{playlist.snippet.title}}</span> </p>
