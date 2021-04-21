@@ -12,18 +12,11 @@ export class DataService {
     public discog: any;
 
     url: string = 'https://settrippn.com/tunes/server/json.server.php?';
-    authKey: string = '0ce04db11b38ca72c1e42808efdba419';
-
-
-
+    authKey: string = '5eb64d1add8e07880b299435ddde08c5';
 
     constructor(private http: HttpClient) {
-
-
         this.loadDiscog()
     }
-
-
 
     loadDiscog() {
         this.http.get(this.url, { params: { "action": "albums", "auth": this.authKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
@@ -35,16 +28,9 @@ export class DataService {
             // })[0]
             console.log(data);
         });
-
-
-
     }
 
-
-
     public getDiscog() {
-
-
         return this.discog
     }
 }

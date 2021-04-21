@@ -5,21 +5,14 @@
 </ion-header>
 
 <ion-content>
-
   <ion-row class="ion-no-padding" *ngFor="let category of categories; let isFirst = first;">
     <ion-col size="9">
       <h2 class="section-header">{{category.title}} </h2>
     </ion-col>
-
-
-
-
-
-
     <ion-slides [options]="opts">
       <!--options 4 sliders-->
 
-      <ion-slide *ngFor="let playlist of category.videos.items" tappable (click)="openVideo(video)">
+      <ion-slide *ngFor="let playlist of category.videos.items" tappable (click)="openVideo(playlist)">
         <!--if there are entries they are clickable-->
         <img [src]="playlist.snippet.thumbnails.high?.url">
         <!--get the images from here-->
@@ -27,8 +20,6 @@
         <p><span class="title">{{playlist.snippet.title}}</span> </p>
         <!--get the title from here + span class-->
       </ion-slide>
-
     </ion-slides>
-
   </ion-row>
 </ion-content>

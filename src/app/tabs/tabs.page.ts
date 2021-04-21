@@ -19,9 +19,9 @@ export class TabsPage {
 
   ngOnit() {
     this.track = this.musicPlayer.getTrack();
-
-
+    console.log(this.track)
   }
+
   setSelectedTab() {
     this.selected = this.tabs.getSelected(); //returns name of tab
   }

@@ -22,9 +22,6 @@ export class AlbumPage implements OnInit {
 
 
   ngOnInit() {
-
-
-
     this.discog = this.dataService.getDiscog();
 
     console.log('this album is', this.discog);
@@ -38,8 +35,6 @@ export class AlbumPage implements OnInit {
     })[0]
 
     console.log(this.album);
-
-
 
     // Helper function for image names
     //     let dasherize = (string) => {

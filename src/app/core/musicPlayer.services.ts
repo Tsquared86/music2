@@ -6,11 +6,7 @@ import { IonRange } from '@ionic/angular';
 @Injectable()
 export class MusicPlayer {
 
-
-
-
     public activeTrack: any = null;
-
 
     player: Howl = null;
     isPlaying = false;
@@ -22,37 +18,32 @@ export class MusicPlayer {
         if (this.player) { //if playing stop curren track
             this.player.stop();
         }
+
         this.player = new Howl({
             src: [track.url],
             html5: true,
-            onplay: () => {
-                console.log('onplay');
+            onPlay: () => {
+                console.log('onPlay');
                 this.isPlaying = true;
                 this.activeTrack = track; //keeps up with current track
                 this.updateProgress();
                 console.log('active track', track);
             },
 
-            onend: () => {
-                console.log('onend');
+            onEnd: () => {
+                console.log('onEnd');
             },
         });
-
         this.player.play();
-
     }
 
     public getTrack() {
-
         return this.activeTrack;
     }
 
     togglePlayer(pause) { //when we push pause it either pauses it or plays
-
         if (this.isPlaying) {
             this.player.pause();
-
-
         }
         else {
             this.player.play();
@@ -66,8 +57,5 @@ export class MusicPlayer {
         setTimeout(() => {  //update every __ms
             this.updateProgress();
         }, 100);
-
     }
-
-
 }

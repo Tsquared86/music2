@@ -13,12 +13,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
   styleUrls: ['./videos.page.scss'],
 })
 export class VideosPage implements OnInit {
-
-
-
-
   categories = [
-
     {
       title: 'Music Videos',
       videos: []
@@ -85,22 +80,13 @@ export class VideosPage implements OnInit {
 
   getPodcast() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, } }).toPromise().then((data: any) => {
-
-
       this.categories[3].videos = data;
       console.log('podcast', data);
-
     });
-
-
-
   }
 
   openVideo(video) {
-
-    console.log(video);
-    // window.open('https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId);
-
+    window.open(`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`);
   }
 
 
