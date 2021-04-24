@@ -46,8 +46,8 @@
 
     <!-- List of tracks -->
     <ion-list>
-      <ion-item button *ngFor="let track of album?.tracks" lines="none" tappable (click)="musicPlayer.start(track)">
-        <ion-label [color]="track == activeTrack ? 'success' : 'white'">{{ track.title }}
+      <ion-item button *ngFor="let track of album?.tracks" lines="none" tappable (click)="playInTabs(track)">
+        <ion-label [color]="selectedTrack == track.title ? 'success' : 'white'">{{ track.title }}
           <p>{{ album?.artist.name }}</p>
         </ion-label>
 

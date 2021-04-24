@@ -2,6 +2,7 @@ import { Injectable, ViewChild } from '@angular/core';
 import { Howl } from 'howler';
 import { IonRange } from '@ionic/angular';
 
+import { GlobalVariable } from '../../app/globals';
 
 @Injectable()
 export class MusicPlayer {
@@ -13,6 +14,10 @@ export class MusicPlayer {
     progress = 0;
     value = 0;
     @ViewChild('range') range: IonRange;
+
+    constructor(public globals: GlobalVariable){
+
+    }
 
     public start(track: any) { //check if playing
         if (this.player) { //if playing stop curren track
@@ -41,19 +46,19 @@ export class MusicPlayer {
         return this.activeTrack;
     }
 
-    togglePlayer(pause) { //when we push pause it either pauses it or plays
-        if (this.isPlaying) {
+    togglePlayer() { //when we push pause it either pauses it or plays
+        if (this.globals.isPlaying) {
             this.player.pause();
-        }
-        else {
+        } else {
             this.player.play();
         }
-        this.isPlaying = !this.isPlaying;
+        this.globals.isPlaying = !this.globals.isPlaying;
     }
 
     updateProgress() { //slider active with time
         let seek = this.player.seek();
         this.progress = (seek / this.player.duration()) * 100 || 0;
+        this.globals.track_progress = this.progress;
         setTimeout(() => {  //update every __ms
             this.updateProgress();
         }, 100);

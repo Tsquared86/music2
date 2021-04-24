@@ -1,29 +1,30 @@
 <ion-tabs (ionTabsDidChange)="setSelectedTab()">
   <!--changes tab icon when selected-->
   <div class="player">
+    <!-- <ion-progress-bar value="23"></ion-progress-bar> -->
     <div class="progress-bar">
-      <div class="progress" [style.width]="progress + '%'">
+      <div class="progress" [style.width]="globals.track_progress + '%'">
       </div>
     </div>
 
     <ion-row>
-      <ion-col size="`1" class="ion-no-padding">
+      <ion-col size="2" class="ion-no-padding">
         <!--cover art-->
-        <img src="active.art">
+        <img [src]="globals.track_info?.art">
       </ion-col>
 
-      <ion-col size="8" class="ion-align-self-center">
+      <ion-col size="7" class="ion-align-self-center">
         <!--track title-->
-        {{track}}
-        <b>track.name</b><br>
-        <span>track.title</span>
+        <b>{{globals.track_info?.name}}</b><br>
+        <span>{{globals.track_info?.artist.name}}</span>
       </ion-col>
 
 
       <ion-col size="2" class="ion-align-self-center">
-        <ion-button tappable (click)="musicPlayer.togglePlayer(pause)">
+        <ion-button tappable (click)="musicPlayer.togglePlayer()">
           <!--play button-->
-          <ion-icon name="play" color="medium" size="large"></ion-icon>
+          <ion-icon slot="icon-only" *ngIf="!globals.isPlaying" name="play"></ion-icon>
+          <ion-icon slot="icon-only" *ngIf="globals.isPlaying" name="pause"></ion-icon>
         </ion-button>
       </ion-col>
 
