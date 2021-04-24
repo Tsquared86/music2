@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from "@angular/router";
 import 'rxjs/add/operator/map';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
-
+import { Platform } from '@ionic/angular';
 
 
 @Component({
@@ -13,12 +13,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
   styleUrls: ['./videos.page.scss'],
 })
 export class VideosPage implements OnInit {
-
-
-
-
   categories = [
-
     {
       title: 'Music Videos',
       videos: []
@@ -46,7 +41,7 @@ export class VideosPage implements OnInit {
     freeMode: true
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private youtube: YoutubeVideoPlayer) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private youtube: YoutubeVideoPlayer, private plt: Platform) { }
 
   key = 'd46787d8e471fb4e3216fb4dd001bffe';
   url = 'https://www.googleapis.com/youtube/v3/playlistItems';
@@ -85,24 +80,18 @@ export class VideosPage implements OnInit {
 
   getPodcast() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, } }).toPromise().then((data: any) => {
-
-
       this.categories[3].videos = data;
       console.log('podcast', data);
-
     });
-
-
-
   }
 
   openVideo(video) {
-
-    console.log(video);
-    // window.open('https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId);
-
+    if (this.plt.is('cordova')) {
+      this.youtube.openVideo(video.snippet.resourceId.videoId);
+    } else {
+      window.open(`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`);
+    }
   }
-
 
 
 
@@ -113,7 +102,7 @@ export class VideosPage implements OnInit {
 
   ngOnInit() {
 
-    // this.dataService.getAlbums()
+
     this.getClips();
     this.getInterview();
     this.getPodcast();
@@ -121,6 +110,3 @@ export class VideosPage implements OnInit {
   }
 
 }
-
-
-

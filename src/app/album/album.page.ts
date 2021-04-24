@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { DataService } from '../core/data.service';
 import { MusicPlayer } from '../core/musicPlayer.services';
 
+import { title } from 'process';
+
 @Component({
   selector: 'app-album',
   templateUrl: './album.page.html',
@@ -17,7 +19,6 @@ export class AlbumPage implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private dataService: DataService, private musicPlayer: MusicPlayer) { }
-
 
 
 

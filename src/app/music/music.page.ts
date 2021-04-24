@@ -42,7 +42,7 @@ export class MusicPage {
 
 
   discog: any;
-  authKey = '3b4187adefc05df9c4e8a848c3d296e1';
+  // authKey = '3b4187adefc05df9c4e8a848c3d296e1';
   url = 'https://settrippn.com/tunes/server/json.server.php';
   albums: any;
   songs: any;

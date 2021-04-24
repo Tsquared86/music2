@@ -23,7 +23,7 @@ export class MusicPlayer {
             this.player.stop();
         }
         this.player = new Howl({
-            src: [track.url],
+            src: [track.path],
             html5: true,
             onplay: () => {
                 console.log('onplay');
@@ -39,15 +39,9 @@ export class MusicPlayer {
         });
 
         this.player.play();
-
     }
 
-    public getTrack() {
-
-        return this.activeTrack;
-    }
-
-    togglePlayer(pause) { //when we push pause it either pauses it or plays
+    togglePlayer() { //when we push pause it either pauses it or plays
 
         if (this.isPlaying) {
             this.player.pause();
@@ -68,6 +62,9 @@ export class MusicPlayer {
         }, 100);
 
     }
+    getTrack() {
 
+        return this.activeTrack;
+    }
 
 }
