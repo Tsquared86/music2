@@ -12,13 +12,19 @@ ion-tab-bar{
         height: 55px;
     }
 
-.progress-bar{ //makes full screen bar
-    width: 100%;
-    height: 2px;
-    background: #707077 ; //progress bcg color
-    .progress{ //lil play line
-        background: #fc6f11 ; //progress color
-        height: 100%;  
-    } 
+    .progress-bar{ //makes full screen bar
+        width: 100%;
+        height: 2px;
+        background: #707077 ; //progress bcg color
+        .progress{ //lil play line
+            background: #fc6f11 ; //progress color
+            height: 100%;  
+        } 
+    }
+
+    ion-progress-bar{
+        --progress-background: #fc6f11 !important;
+        --buffer-background: #707077 !important;
+        
+    }
 }
- }
