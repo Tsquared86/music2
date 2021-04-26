@@ -16,7 +16,7 @@ ion-item {
     }
 }
 
-#miniPlayer {
+.miniPlayer {
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px 10px 0 0;
     transition: 0.5s;
@@ -26,37 +26,12 @@ ion-item {
         z-index: 10;
     }
 }
-/*
-#fullPlayer {
-    transition: 0.5s;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    background: #fff;
-    z-index: 20;
-    //Hide by default by setting bottom value in negative
-    bottom: -1000px;
-    //Current Song Image 
-    #currImg {
-        margin-top: 30px;
-        width: 200px;
-        height: 200px;
-        border-radius: 10px;
-    }
-    p {
-        color: #8c8c8c;
-        margin: 0;
-    }   
-    ion-text {
-        font-size: medium;
-    }
-}
+
 
 ion content{
 --padding-top: 40px;
 }
- */
+ 
 .section-header {
     color: #fff;
     font-family: 'Spotify';

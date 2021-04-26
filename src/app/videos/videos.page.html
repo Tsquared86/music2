@@ -5,17 +5,10 @@
 </ion-header>
 
 <ion-content>
-
   <ion-row class="ion-no-padding" *ngFor="let category of categories; let isFirst = first;">
     <ion-col size="9">
       <h2 class="section-header">{{category.title}} </h2>
     </ion-col>
-
-
-
-
-
-
     <ion-slides [options]="opts">
       <!--options 4 sliders-->
 
@@ -27,8 +20,6 @@
         <p><span class="title">{{playlist.snippet.title}}</span> </p>
         <!--get the title from here + span class-->
       </ion-slide>
-
     </ion-slides>
-
   </ion-row>
 </ion-content>

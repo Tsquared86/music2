@@ -4,7 +4,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'tabs', //removed tabs from inside
     component: TabsPage,
     children: [
       {
@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'music/:title',
-        loadChildren: () => import('../album/album.module').then( m => m.AlbumPageModule)
+        loadChildren: () => import('../album/album.module').then(m => m.AlbumPageModule)
       },
       {
         path: '',
@@ -45,4 +45,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

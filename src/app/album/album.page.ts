@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataService } from '../core/data.service';
 import { MusicPlayer } from '../core/musicPlayer.services';
 
-import { title } from 'process';
+import { GlobalVariable } from '../../app/globals';
 
 @Component({
   selector: 'app-album',
@@ -12,19 +12,22 @@ import { title } from 'process';
   styleUrls: ['./album.page.scss'],
 })
 export class AlbumPage implements OnInit {
-
   album = null;
-
   discog: any;
+  selectedTrack = "";
 
-
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private dataService: DataService, private musicPlayer: MusicPlayer) { }
-
-
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient,
+    private dataService: DataService,
+    private musicPlayer: MusicPlayer,
+    public globals: GlobalVariable
+  ) { }
 
   ngOnInit() {
-
-
+    if (this.globals.track_info) {
+      this.selectedTrack = this.globals.track_info.title;
+    }
 
     this.discog = this.dataService.getDiscog();
 
@@ -33,14 +36,11 @@ export class AlbumPage implements OnInit {
     const decodedTitle = decodeURIComponent(title);
     console.log(title);
 
-
-    this.album = this.discog.filter(d => {
-      return d['name'] == decodedTitle
-    })[0]
+    this.album = this.discog.filter((d) => {
+      return d['name'] == decodedTitle;
+    })[0];
 
     console.log(this.album);
-
-
 
     // Helper function for image names
     //     let dasherize = (string) => {
@@ -48,5 +48,13 @@ export class AlbumPage implements OnInit {
     //     return (index !== 0 ? '-' : '') + char.toLowerCase();
     //   });
     // };
+  }
+
+  playInTabs(track) {
+    this.selectedTrack = track.title;
+    this.globals.isPlaying = true;
+    this.globals.track_info = track;
+    this.musicPlayer.start(this.globals.track_info);
+    this.musicPlayer.updateProgress();
   }
 }

@@ -9,13 +9,13 @@ import { AppComponent } from './app.component';
 import { VideosPage } from './videos/videos.page';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
-
+import { GlobalVariable } from './globals';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), CoreModule, AppRoutingModule, HttpClientModule],
-  providers: [HttpClient, VideosPage, YoutubeVideoPlayer,
+  providers: [GlobalVariable, HttpClient, VideosPage, YoutubeVideoPlayer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

@@ -56,12 +56,11 @@ export class MusicPage {
   ngOnInit() {
     //gt discog from data
     this.discog = this.dataService.getDiscog();
-    console.log(this.discog);
 
     this.albums = this.discog.filter(a => {
       return a['songcount'] >= 2
     })
-    console.log("albb", this.albums);
+
 
     // set albums to place
     this.categories[2].albums = this.albums;
@@ -77,7 +76,6 @@ export class MusicPage {
     this.single = this.discog.filter(d => {
       return d['songcount'] == 1
     })
-    console.log(this.single);
 
     // set singles
     this.categories[1].albums = this.single;

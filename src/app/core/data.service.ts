@@ -6,45 +6,40 @@ import { map, catchError } from 'rxjs/operators';
 
 
 
+
 @Injectable()
 export class DataService {
 
     public discog: any;
+    public sheet: any;
 
     url: string = 'https://settrippn.com/tunes/server/json.server.php?';
-    authKey: string = '292c929f903a39787d2e83f80bb77d7b';
-
-
-
-
+    api: string = 'b4dcee110d4dfb04a476ff43c8b12321';
+    aKey: string;
     constructor(private http: HttpClient) {
+        this.loadPWord()
 
-
-        this.loadDiscog()
     }
 
+    public loadPWord() {
+        this.http.get(this.url, { params: { "action": "handshake", "auth": this.api } }).toPromise().then((data: Object[]) => {
+            this.sheet = data;
+            this.aKey = this.sheet.auth;
+            this.loadDiscog();
 
+        })
+
+    }
 
     loadDiscog() {
-        this.http.get(this.url, { params: { "action": "albums", "auth": this.authKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
+
+        this.http.get(this.url, { params: { "action": "albums", "auth": this.aKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
             this.discog = data;
-            // const title = data.paramMap.get('title');
-            // const decodedTitle = decodeURIComponent(title);
-            // this.album = data.filter(d => {
-            //     return d['name'] == decodedTitle
-            // })[0]
             console.log(data);
         });
-
-
-
     }
 
-
-
     public getDiscog() {
-
-
         return this.discog
     }
 }
