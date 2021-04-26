@@ -12,7 +12,7 @@ export class DataService {
     public discog: any;
 
     url: string = 'https://settrippn.com/tunes/server/json.server.php?';
-    authKey: string = '93143f973cda948aa840958ee8319493';
+    authKey: string = '6f7f11b4d061f2a7d0a9e23c8b79c0a7';
 
     constructor(private http: HttpClient) {
         this.loadDiscog()
