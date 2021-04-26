@@ -8,7 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
 
 
-  // old one
+
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
@@ -16,25 +16,7 @@ const routes: Routes = [
 
 
 
-  // {
-  //   path: 'login',
-  //   loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
-  //   canLoad: [IntroGuard, AutoLoginGuard] // Check if we should show the introduction or forward to inside
-  // },
-  // {
-  //   path: 'intro',
-  //   loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule)
-  // },
-  // {
-  //   path: 'tabs',
-  //   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
-  //   canLoad: [AuthGuard] // Secure all child pages
-  // },
-  // {
-  //   path: '',
-  //   redirectTo: '/login',
-  //   pathMatch: 'full'
-  // }
+
 
 
 

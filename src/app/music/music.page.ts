@@ -39,7 +39,7 @@ export class MusicPage {
     slidesPerView: 2.4,
     slidesOffsetBefore: 20,
     spaceBetween: 20,
-    freeMode: true,
+    freeMode: true
   };
 
 

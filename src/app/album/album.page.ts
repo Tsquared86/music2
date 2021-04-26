@@ -85,13 +85,7 @@ export class AlbumPage implements OnInit {
 
 
 
-  playInTabs(track) {
-    this.selectedTrack = track.title;
-    this.globals.isPlaying = true;
-    this.globals.track_info = track;
-    this.musicPlayer.start(this.globals.track_info);
-    this.musicPlayer.updateProgress();
-  }
+
 
 
   addToFav() {
@@ -165,5 +159,13 @@ export class AlbumPage implements OnInit {
 
     // Saving locally
     localStorage.setItem("fav_tracks", JSON.stringify(this.globals.fav_tracks))
+  }
+
+  playInTabs(track) {
+    this.selectedTrack = track.title;
+    this.globals.isPlaying = true;
+    this.globals.track_info = track;
+    this.musicPlayer.start(this.globals.track_info);
+    this.musicPlayer.updateProgress();
   }
 }

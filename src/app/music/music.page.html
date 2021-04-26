@@ -53,16 +53,15 @@
         <ion-item async button *ngFor="let track of globals.fav_tracks" lines="none" (click)="playInTabs(track)">
           <img class="fav-img" slot="start" [src]="track.art">
 
-          <ion-label [color]="selectedTrack == track.title ? 'success' : 'light'">
+          <ion-label [color]="selectedTrack == track.title ? 'primary' : 'white'">
             {{ track.title }}
             <p>{{ track?.artist.name }}</p>
           </ion-label>
 
-          <!-- <ion-icon slot="end" size="small" name="heart-outline" color="light" (click)="addTrackToFav(track)"></ion-icon> -->
+          <ion-icon slot="end" size="small" name="heart-outline" color="light" (click)="addTrackToFav(track)">
+          </ion-icon>
         </ion-item>
       </ion-list>
     </div>
   </div>
 </ion-content>
-
-<!-- <ion-tabs (ionTabsDidChange)="setSelectedTab()">
