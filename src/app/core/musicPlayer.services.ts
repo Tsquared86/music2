@@ -21,6 +21,7 @@ export class MusicPlayer {
 
     public start(track: any) { //check if playing
         if (this.player) { //if playing stop curren track
+            console.log("Playing stop")
             this.player.stop();
         }
 
@@ -59,6 +60,12 @@ export class MusicPlayer {
         let seek = this.player.seek();
         this.progress = (seek / this.player.duration()) * 100 || 0;
         this.globals.track_progress = this.progress;
+
+        let that = this;
+        this.player.on('end', function () {
+            that.globals.isPlaying = false;
+        });
+
         setTimeout(() => {  //update every __ms
             this.updateProgress();
         }, 100);

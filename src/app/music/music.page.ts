@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../core/data.service';
 import { MusicPlayer } from '../core/musicPlayer.services';
+import { GlobalVariable } from '../../app/globals';
+
 
 @Component({
   selector: 'app-music',
@@ -19,16 +21,16 @@ export class MusicPage {
 
     {
       title: 'Unreleased Jams',
-      albums: []
+      albums: [],
 
     },
     {
       title: 'Singles',
-      albums: []
+      albums: [],
     },
     {
       title: 'Albums/EPs',
-      albums: []
+      albums: [],
     }
 
   ];
@@ -37,7 +39,7 @@ export class MusicPage {
     slidesPerView: 2.4,
     slidesOffsetBefore: 20,
     spaceBetween: 20,
-    freeMode: true
+    freeMode: true,
   };
 
 
@@ -48,7 +50,10 @@ export class MusicPage {
   songs: any;
   single: any[];
   secret: any[];
-  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient, private musicPlayer: MusicPlayer) {
+
+  segment_music: any = 'all';
+  selectedTrack = "";
+  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient, private musicPlayer: MusicPlayer, public globals: GlobalVariable) {
 
 
   }
@@ -92,7 +97,20 @@ export class MusicPage {
     return string.replace(/[A-Z]/g, function (char, index) {
       return (index !== 0 ? '-' : '') + char.toLowerCase();
     });
-  };
+  }
+
+  segmentChanged_music(ev: any) {
+    this.segment_music = ev.detail.value;
+  }
+
+  playInTabs(track) {
+    this.selectedTrack = "";
+    this.selectedTrack = track.title;
+    this.globals.isPlaying = true;
+    this.globals.track_info = track;
+    this.musicPlayer.start(this.globals.track_info);
+    this.musicPlayer.updateProgress();
+  }
 
 
 }

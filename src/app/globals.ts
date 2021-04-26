@@ -6,6 +6,8 @@ import { ToastController } from '@ionic/angular';
 export class GlobalVariable {
     track_info: any;
     track_progress = 0;
+    fav_tracks = [];
+    fav_albums = [];
     isPlaying: boolean = false;
 
     constructor(public alertCtrl: AlertController, public toastCtrl: ToastController) {

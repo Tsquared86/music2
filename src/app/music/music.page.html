@@ -1,53 +1,68 @@
 <ion-header translucent>
   <ion-toolbar>
     <!--fav bar-->
-    <!-- <ion-segment value="all">
+    <ion-segment [(ngModel)]="segment_music" (ionChange)="segmentChanged_music($event)">
       <ion-segment-button value="all">
         <ion-label>All</ion-label>
       </ion-segment-button>
       <ion-segment-button value="favorites">
         <ion-label>Favorites</ion-label>
       </ion-segment-button>
-    </ion-segment> -->
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="segment_music == 'all'">
+    <ion-row class="ion-no-padding" *ngFor="let category of categories; let isFirst = first;">
+      <ion-col *ngIf="category.albums.length > 0" size="9">
+        <h2 class="section-header">{{category.title}} </h2>
+      </ion-col>
 
-  <ion-row class="ion-no-padding" *ngFor="let category of categories; let isFirst = first;">
-    <ion-col *ngIf="category.albums.length > 0" size="9">
-      <h2 class="section-header">{{category.title}} </h2>
-    </ion-col>
+      <ion-col size="3">
+        <!--setting-->
+        <ion-button *ngIf="isFirst" fill="clear" color=white>
+          <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
 
-    <ion-col size="3">
-      <!--setting-->
-      <ion-button *ngIf="isFirst" fill="clear" color=white>
-        <ion-icon name="settings-outline" slot="icon-only">
+      <ion-slides *ngIf="category.albums.length > 0" [options]="opts">
+        <!--options 4 sliders-->
 
-        </ion-icon>
+        <ion-slide *ngFor="let album of category.albums" tappable (click)="openAlbum(album)">
+          <!--if there are entries they are clickable-->
+          <img [src]="album.art">
+          <!--get the images from here-->
+          <span class="title">{{ album.name }}</span>
+          <!--get the title from here + span class-->
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  </div>
 
-      </ion-button>
+  <div *ngIf="segment_music == 'favorites'">
+    <div *ngIf="globals.fav_tracks.length == 0">
+      <p class="p-icon">
+        <ion-icon name="eye-off"></ion-icon>
+      </p>
+      <p no-margin class="no-cate-p">No favorite Songs</p>
+    </div>
 
+    <div *ngIf="globals.fav_tracks.length > 0">
+      <ion-list>
+        <ion-item async button *ngFor="let track of globals.fav_tracks" lines="none" (click)="playInTabs(track)">
+          <img class="fav-img" slot="start" [src]="track.art">
 
-    </ion-col>
+          <ion-label [color]="selectedTrack == track.title ? 'success' : 'light'">
+            {{ track.title }}
+            <p>{{ track?.artist.name }}</p>
+          </ion-label>
 
-
-
-
-    <ion-slides *ngIf="category.albums.length > 0" [options]="opts">
-      <!--options 4 sliders-->
-
-      <ion-slide *ngFor="let album of category.albums" tappable (click)="openAlbum(album)">
-        <!--if there are entries they are clickable-->
-        <img [src]="album.art">
-        <!--get the images from here-->
-        <span class="title">{{ album.name }}</span>
-        <!--get the title from here + span class-->
-      </ion-slide>
-
-    </ion-slides>
-
-  </ion-row>
-
-
+          <!-- <ion-icon slot="end" size="small" name="heart-outline" color="light" (click)="addTrackToFav(track)"></ion-icon> -->
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
+
+<!-- <ion-tabs (ionTabsDidChange)="setSelectedTab()">
