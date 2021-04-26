@@ -16,7 +16,7 @@ ion-item {
     }
 }
 
-.miniPlayer {
+#miniPlayer {
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px 10px 0 0;
     transition: 0.5s;
@@ -27,11 +27,6 @@ ion-item {
     }
 }
 
-
-ion content{
---padding-top: 40px;
-}
- 
 .section-header {
     color: #fff;
     font-family: 'Spotify';
@@ -54,7 +49,6 @@ ion-slide {
 ion-slides {
     margin-bottom: 20px;
 }
-
 
 ion-list {
     --ion-background-color: var(--ion-color-dark);
@@ -79,4 +73,4 @@ ion-list {
 .fav-img{
     height: 50px;
     width: 50px;
-} 
+}
