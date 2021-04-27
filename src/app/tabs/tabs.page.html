@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <ion-row>
+    <ion-row *ngIf="globals.track_info">
       <ion-col size="2" class="ion-no-padding">
         <!--cover art-->
         <img [src]="globals.track_info?.art">

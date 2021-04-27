@@ -41,8 +41,6 @@ export class AlbumPage implements OnInit {
     })[0];
 
     console.log(this.album);
-
-
     this.album.isFavorite = false;
     this.album.tracks.forEach(element => {
       element.isFavorite = false;
@@ -67,7 +65,11 @@ export class AlbumPage implements OnInit {
 
       if (albumFound) {
         this.album.tracks.forEach(element => {
-          element.isFavorite = true;
+          this.globals.fav_tracks.forEach(trk => {
+            if (element.id == trk.id) {
+              element.isFavorite = true;
+            }
+          });
         });
       }
     }
@@ -130,6 +132,49 @@ export class AlbumPage implements OnInit {
     localStorage.setItem("fav_albums", JSON.stringify(this.globals.fav_albums));
     localStorage.setItem("fav_tracks", JSON.stringify(this.globals.fav_tracks));
   }
+
+  removeFromFav() {
+    this.album.isFavorite = false;
+
+    if (this.globals.fav_albums.length > 0) {
+      this.globals.fav_albums.forEach((element, index) => {
+        if (element.id == this.album.id) {
+          if (index > -1) {
+            this.globals.fav_albums.splice(index, 1);
+          }
+        }
+      });
+
+      this.album.tracks.forEach(element => {
+        element.isFavorite = false;
+
+        this.globals.fav_tracks.forEach((fav_element, index) => {
+          if (element.album.id == fav_element.album.id) {
+            this.globals.fav_tracks.splice(index, 1);
+          }
+        });
+      });
+
+      // Saving locally
+      localStorage.setItem("fav_albums", JSON.stringify(this.globals.fav_albums));
+      localStorage.setItem("fav_tracks", JSON.stringify(this.globals.fav_tracks));
+    }
+  }
+
+  removeTrackFromFav(track) {
+    track.isFavorite = false;
+    this.globals.fav_tracks.forEach((element, index) => {
+      if (element.id == track.id) {
+        if (index > -1) {
+          this.globals.fav_tracks.splice(index, 1);
+        }
+      }
+    });
+
+    // Saving locally
+    localStorage.setItem("fav_tracks", JSON.stringify(this.globals.fav_tracks))
+  }
+
 
   addTrackToFav(track) {
     if (this.globals.fav_tracks.length == 0) {
