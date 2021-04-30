@@ -19,12 +19,12 @@
         <h2 class="section-header">{{category.title}} </h2>
       </ion-col>
 
-      <ion-col size="3">
-        <!--setting-->
+      <!-- <ion-col size="3">
+        setting
         <ion-button *ngIf="isFirst" fill="clear" color=white>
           <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
         </ion-button>
-      </ion-col>
+      </ion-col> -->
 
       <ion-slides *ngIf="category.albums.length > 0" [options]="opts">
         <!--options 4 sliders-->
