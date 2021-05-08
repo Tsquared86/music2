@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../core/data.service';
 import { MusicPlayer } from '../core/musicPlayer.services';
 import { GlobalVariable } from '../../app/globals';
-
+import { AlbumPage } from '../../app/album/album.page';
 
 @Component({
   selector: 'app-music',
@@ -53,7 +53,7 @@ export class MusicPage {
 
   segment_music: any = 'all';
   selectedTrack = "";
-  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient, private musicPlayer: MusicPlayer, public globals: GlobalVariable) {
+  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient, public musicPlayer: MusicPlayer, public globals: GlobalVariable) {
 
 
   }
@@ -62,9 +62,7 @@ export class MusicPage {
     //gt discog from data
     this.discog = this.dataService.getDiscog();
 
-    this.albums = this.discog.filter(a => {
-      return a['songcount'] >= 2
-    })
+    this.albums = this.discog.filter((x) => x.songcount >= 2 && x.type != 'secret')
 
 
     // set albums to place
@@ -78,12 +76,19 @@ export class MusicPage {
     // console.log(this.secret);
 
     //get singles
-    this.single = this.discog.filter(d => {
-      return d['songcount'] == 1
-    })
+    this.single = this.discog.filter((x) => x.songcount == 1 && x.type != 'secret')
 
     // set singles
     this.categories[1].albums = this.single;
+
+
+    //get secret
+    this.secret = this.discog.filter((x) => x.type == 'secret');
+
+    this.categories[0].albums = this.secret;
+
+
+
   }
 
   openAlbum(album) {

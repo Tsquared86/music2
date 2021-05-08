@@ -15,7 +15,7 @@ export class TabsPage {
   progress = 10;
   track: any;
 
-  constructor(private musicPlayer: MusicPlayer, public globals: GlobalVariable) { }
+  constructor(public musicPlayer: MusicPlayer, public globals: GlobalVariable) { }
 
   ngOnit() {
     this.track = this.musicPlayer.getTrack();

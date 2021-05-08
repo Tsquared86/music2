@@ -13,8 +13,8 @@ export class DataService {
     public discog: any;
     public sheet: any;
 
-    url: string = 'https://settrippn.com/tunes/server/json.server.php?';
-    api: string = 'b4dcee110d4dfb04a476ff43c8b12321';
+    url: string = 'https://settrippn.com/ampache/server/json.server.php?';
+    api: string = 'ddfbc67192ef9fdf54c1d3e4f88eff1e';
     aKey: string;
     constructor(private http: HttpClient) {
         this.loadPWord()

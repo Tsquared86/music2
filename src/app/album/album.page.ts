@@ -20,7 +20,7 @@ export class AlbumPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private http: HttpClient,
     private dataService: DataService,
-    private musicPlayer: MusicPlayer,
+    public musicPlayer: MusicPlayer,
     public globals: GlobalVariable
   ) { }
 

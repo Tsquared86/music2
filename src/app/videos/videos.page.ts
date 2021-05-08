@@ -16,20 +16,20 @@ export class VideosPage implements OnInit {
   categories = [
     {
       title: 'Music Videos',
-      videos: []
+      videos: [{ items: [] }]
 
     },
     {
       title: 'Live Shows',
-      videos: []
+      videos: [{ items: [] }]
     },
     {
       title: 'Interviews',
-      videos: []
+      videos: [{ items: [] }]
     },
     {
       title: 'Toeknee Tee TV',
-      videos: []
+      videos: [{ items: [] }]
     }
 
   ];
@@ -55,15 +55,15 @@ export class VideosPage implements OnInit {
 
 
   getInterview() {  //promise to get data then its data which we assign as an array fille by the get request
-    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.interviews, } }).toPromise().then((data: any) => {
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.interviews, 'maxResults': '50', } }).toPromise().then((data: any) => {
       this.categories[2].videos = data;
-
+      console.log(data);
 
     });
   }
 
   getClips() {  //promise to get data then its data which we assign as an array fille by the get request
-    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.musicVids, } }).toPromise().then((data: any) => {
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.musicVids, 'maxResults': '50', } }).toPromise().then((data: any) => {
       this.categories[0].videos = data;
 
 
@@ -71,7 +71,7 @@ export class VideosPage implements OnInit {
   }
 
   getLive() {  //promise to get data then its data which we assign as an array fille by the get request
-    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.live, } }).toPromise().then((data: any) => {
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.live, 'maxResults': '50', } }).toPromise().then((data: any) => {
       this.categories[1].videos = data;
 
 
@@ -79,7 +79,7 @@ export class VideosPage implements OnInit {
   }
 
   getPodcast() {  //promise to get data then its data which we assign as an array fille by the get request
-    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, } }).toPromise().then((data: any) => {
+    this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, 'maxResults': '50', } }).toPromise().then((data: any) => {
       this.categories[3].videos = data;
 
     });
