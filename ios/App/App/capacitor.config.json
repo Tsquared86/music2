@@ -1,12 +1,19 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "TT",
+  "appId": "com.toekneetee.app",
+  "appName": "Toeknee Tee",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 0
+      "launchShowDuration": 1000
+    },
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
     }
   },
   "cordova": {}

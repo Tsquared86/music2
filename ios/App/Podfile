@@ -1,6 +1,6 @@
 platform :ios, '11.0'
 use_frameworks!
-
+project 'App.xcodeproj'
 # workaround to avoid Xcode caching of Pods that requires
 # Product -> Clean Build Folder after new Cordova plugins installed
 # Requires CocoaPods 1.6 or newer
@@ -11,10 +11,14 @@ def capacitor_pods
   pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
   pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
   pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
+  pod 'CordovaPluginsStatic', :path => '../capacitor-cordova-ios-plugins'
   # Do not delete
 end
 
 target 'App' do
   capacitor_pods
+
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
   # Add your Pods here
 end

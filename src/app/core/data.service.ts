@@ -13,8 +13,8 @@ export class DataService {
     public discog: any;
     public sheet: any;
 
-    url: string = 'https://settrippn.com/ampache/server/json.server.php?';
-    api: string = 'ddfbc67192ef9fdf54c1d3e4f88eff1e';
+    url: string = 'https://settrippn.com/amp/server/json.server.php?';
+    api: string = '3a123c8245b4357bf1129bdeb3c92f43';
     aKey: string;
     constructor(private http: HttpClient) {
         this.loadPWord()
@@ -40,6 +40,9 @@ export class DataService {
     }
 
     public getDiscog() {
+        this.discog.sort(function (a, b) {
+            return parseFloat(a.id) - parseFloat(b.id);
+        })
         return this.discog
     }
 }

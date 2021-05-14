@@ -26,7 +26,12 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-content {
-    --background: var(--ion-color-light);
+    --background: var(--ion-color-dark);
+}
+
+ion-toolbar {
+    --background: #000000;
+    --color: #468af8;
 }
 
 @font-face{
