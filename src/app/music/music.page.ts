@@ -6,6 +6,8 @@ import { DataService } from '../core/data.service';
 import { MusicPlayer } from '../core/musicPlayer.services';
 import { GlobalVariable } from '../../app/globals';
 import { AlbumPage } from '../../app/album/album.page';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
 
 @Component({
   selector: 'app-music',
@@ -43,7 +45,7 @@ export class MusicPage {
   };
 
 
-  discog: any;
+  discog: any = [];
   // authKey = '3b4187adefc05df9c4e8a848c3d296e1';
   url = 'https://settrippn.com/tunes/server/json.server.php';
   albums: any;
@@ -53,42 +55,75 @@ export class MusicPage {
 
   segment_music: any = 'all';
   selectedTrack = "";
-  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient, public musicPlayer: MusicPlayer, public globals: GlobalVariable) {
+  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private http: HttpClient, public musicPlayer: MusicPlayer, public globals: GlobalVariable, private backgroundMode: BackgroundMode) {
 
-
+    this.loadSongs();
+    //this.backgroundMode.enable();
   }
 
   ngOnInit() {
+
+    //   //gt discog from data
+    //   this.discog = this.dataService.getDiscog();
+
+    //   this.albums = this.discog.filter((x) => x.songcount >= 2 && x.type != 'secret')
+
+
+    //   // set albums to place
+    //   this.categories[2].albums = this.albums;
+
+
+
+    //   // //get secret
+    //   // this.secret = this.discog.filter(f => {
+    //   //   return f['type'] == 'remix'
+    //   // })
+    //   // console.log(this.secret);
+
+    //   //get singles
+    //   this.single = this.discog.filter((x) => x.songcount == 1 && x.type != 'secret')
+
+    //   // set singles
+    //   this.categories[1].albums = this.single;
+
+
+    //   //get secret
+    //   this.secret = this.discog.filter((x) => x.type == 'secret');
+
+    //   this.categories[0].albums = this.secret;
+  }
+
+  loadSongs() {
     //gt discog from data
-    this.discog = this.dataService.getDiscog();
+    let response = this.dataService.loadsDiscog();
+    response.toPromise().then((data: Object[]) => {
+      this.discog = data;
+      this.discog.sort(function (a, b) {
+        return parseFloat(a.id) - parseFloat(b.id);
+      })
+      this.albums = this.discog.filter((x) => x.songcount >= 2 && x.type != 'secret')
 
-    this.albums = this.discog.filter((x) => x.songcount >= 2 && x.type != 'secret')
+      // set albums to place
+      this.categories[2].albums = this.albums;
 
+      // //get secret
+      // this.secret = this.discog.filter(f => {
+      //   return f['type'] == 'remix'
+      // })
+      // console.log(this.secret);
 
-    // set albums to place
-    this.categories[2].albums = this.albums;
+      //get singles
+      this.single = this.discog.filter((x) => x.songcount == 1 && x.type != 'secret')
 
-
-    // //get secret
-    // this.secret = this.discog.filter(f => {
-    //   return f['type'] == 'remix'
-    // })
-    // console.log(this.secret);
-
-    //get singles
-    this.single = this.discog.filter((x) => x.songcount == 1 && x.type != 'secret')
-
-    // set singles
-    this.categories[1].albums = this.single;
-
-
-    //get secret
-    this.secret = this.discog.filter((x) => x.type == 'secret');
-
-    this.categories[0].albums = this.secret;
+      // set singles
+      this.categories[1].albums = this.single;
 
 
+      //get secret
+      this.secret = this.discog.filter((x) => x.type == 'secret');
 
+      this.categories[0].albums = this.secret;
+    });
   }
 
   openAlbum(album) {

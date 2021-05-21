@@ -7,18 +7,19 @@ const routes: Routes = [
     path: 'tabs', //removed tabs from inside
     component: TabsPage,
     children: [
+      // {
+      //   path: 'feed',
+      //   loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
+      // },
       {
-        path: 'feed',
-        loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
+        path: 'videos',
+        loadChildren: () => import('../videos/videos.module').then(m => m.VideosPageModule)
       },
       {
         path: 'music',
         loadChildren: () => import('../music/music.module').then(m => m.MusicPageModule)
       },
-      {
-        path: 'videos',
-        loadChildren: () => import('../videos/videos.module').then(m => m.VideosPageModule)
-      },
+
       {
         path: 'lexicon',
         loadChildren: () => import('../lexicon/lexicon.module').then(m => m.LexiconPageModule)
@@ -29,14 +30,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/feed',
+        redirectTo: '/tabs/videos',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '', //loads feed page at start
-    redirectTo: '/tabs/feed',
+    redirectTo: '/tabs/videos',
     pathMatch: 'full'
   }
 ];

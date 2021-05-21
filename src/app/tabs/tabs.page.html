@@ -35,13 +35,14 @@
   <ion-tab-bar slot="bottom">
     <!--puts tabs on botom of page-->
 
-    <ion-tab-button tab="feed">
-      <!--defines page link-->
-      <ion-icon [name]="selected == 'feed' ? 'list-circle' : 'list-circle-outline'"></ion-icon>
-      <!--icon from website-->
-      <ion-label>Feed</ion-label>
-      <!--tab display name-->
-    </ion-tab-button>
+    <!-- <ion-tab-button tab="feed"> -->
+    <!--defines page link-->
+    <!-- <ion-icon [name]="selected == 'feed' ? 'list-circle' : 'list-circle-outline'"></ion-icon> -->
+    <!--icon from website-->
+    <!-- <ion-label>Feed</ion-label> -->
+    <!--tab display name-->
+    <!-- </ion-tab-button> -->
+
 
     <ion-tab-button tab="music">
       <!--directs to page, has to match path routing name-->
@@ -53,6 +54,10 @@
       <ion-icon [name]="selected == 'videos' ? 'videocam' : 'videocam-outline'"></ion-icon>
       <ion-label>Videos</ion-label>
     </ion-tab-button>
+
+
+
+
 
     <ion-tab-button tab="lexicon">
       <ion-icon [name]="selected == 'lexicon' ? 'book' : 'book-outline'"></ion-icon>

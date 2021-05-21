@@ -4,6 +4,7 @@ import { IonRange } from '@ionic/angular';
 import { MusicControls } from '@ionic-native/music-controls/ngx';
 import { GlobalVariable } from '../../app/globals';
 
+
 @Injectable()
 export class MusicPlayer {
 
@@ -26,15 +27,19 @@ export class MusicPlayer {
             this.player.stop();
         }
 
+
         this.player = new Howl({
             src: [track.url],
             html5: true,
             onplay: () => {
-                this.createMusicControl(track);
+                // this.createMusicControl(track);
                 this.isPlaying = true;
                 this.activeTrack = track; //keeps up with current track
                 this.updateProgress();
                 console.log('active track', track);
+
+                // this.musicControls.listen(); // activates the observable above
+                // this.musicControls.updateIsPlaying(true);
 
             },
 
@@ -44,6 +49,68 @@ export class MusicPlayer {
         });
         this.player.play();
     }
+
+    //     this.musicControls.subscribe().subscribe(action => {
+
+
+
+
+
+    //         function events(action) {
+    //             const message = JSON.parse(action).message;
+    //             switch (message) {
+    //                 case 'music-controls-next':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-previous':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-pause':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-play':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-destroy':
+    //                     // Do something
+    //                     break;
+
+    //                 // External controls (iOS only)
+    //                 case 'music-controls-toggle-play-pause':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-seek-to':
+    //                     const seekToInSeconds = JSON.parse(action).position;
+    //                     this.musicControls.updateElapsed({
+    //                         elapsed: seekToInSeconds,
+    //                         isPlaying: true
+    //                     });
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-skip-forward':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-skip-backward':
+    //                     // Do something
+    //                     break;
+
+    //                 // Headset events (Android only)
+    //                 // All media button events are listed below
+    //                 case 'music-controls-media-button':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-headset-unplugged':
+    //                     // Do something
+    //                     break;
+    //                 case 'music-controls-headset-plugged':
+    //                     // Do something
+    //                     break;
+    //                 default:
+    //                     break;
+    //             }
+    //         }
+    //     });
+    // }
 
 
     public createMusicControl(track) {
@@ -67,66 +134,10 @@ export class MusicPlayer {
             notificationIcon: 'notification'
         });
 
-        this.musicControls.subscribe().subscribe(action => {
 
-            function events(action) {
-                const message = JSON.parse(action).message;
-                switch (message) {
-                    case 'music-controls-next':
-                        // Do something
-                        break;
-                    case 'music-controls-previous':
-                        // Do something
-                        break;
-                    case 'music-controls-pause':
-                        // Do something
-                        break;
-                    case 'music-controls-play':
-                        // Do something
-                        break;
-                    case 'music-controls-destroy':
-                        // Do something
-                        break;
 
-                    // External controls (iOS only)
-                    case 'music-controls-toggle-play-pause':
-                        // Do something
-                        break;
-                    case 'music-controls-seek-to':
-                        const seekToInSeconds = JSON.parse(action).position;
-                        this.musicControls.updateElapsed({
-                            elapsed: seekToInSeconds,
-                            isPlaying: true
-                        });
-                        // Do something
-                        break;
-                    case 'music-controls-skip-forward':
-                        // Do something
-                        break;
-                    case 'music-controls-skip-backward':
-                        // Do something
-                        break;
 
-                    // Headset events (Android only)
-                    // All media button events are listed below
-                    case 'music-controls-media-button':
-                        // Do something
-                        break;
-                    case 'music-controls-headset-unplugged':
-                        // Do something
-                        break;
-                    case 'music-controls-headset-plugged':
-                        // Do something
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
 
-        this.musicControls.listen(); // activates the observable above
-
-        this.musicControls.updateIsPlaying(true);
 
 
     }

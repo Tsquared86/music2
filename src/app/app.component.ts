@@ -7,6 +7,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { MusicControls } from '@ionic-native/music-controls/ngx';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -17,6 +19,7 @@ export class AppComponent {
     private statusBar: StatusBar) {
 
     this.initializeApp();
+
 
     // Get saved data for users
     if (localStorage.getItem("fav_albums") == '' || localStorage.getItem("fav_albums") == null || localStorage.getItem("fav_albums") == undefined) {
@@ -39,6 +42,7 @@ export class AppComponent {
 
       // Trigger the push setup 
       this.fcmService.initPush();
+
     });
   }
 }

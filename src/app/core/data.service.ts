@@ -26,17 +26,20 @@ export class DataService {
             this.sheet = data;
             this.aKey = this.sheet.auth;
             this.loadDiscog();
-
-        })
-
+        });
     }
 
     loadDiscog() {
-
         this.http.get(this.url, { params: { "action": "albums", "auth": this.aKey, "include": "songs" } }).toPromise().then((data: Object[]) => {
             this.discog = data;
+
             console.log(data);
         });
+    }
+
+    public loadsDiscog() {
+        return this.http.get(this.url, { params: { "action": "albums", "auth": this.aKey, "include": "songs" } })
+
     }
 
     public getDiscog() {

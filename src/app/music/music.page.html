@@ -15,7 +15,7 @@
 <ion-content>
   <div *ngIf="segment_music == 'all'">
     <ion-row class="ion-no-padding" *ngFor="let category of categories; let isFirst = first;">
-      <ion-col *ngIf="category.albums.length > 0" size="9">
+      <ion-col *ngIf="category.albums.length > 0" size="12">
         <h2 class="section-header">{{category.title}} </h2>
       </ion-col>
 
@@ -45,7 +45,7 @@
       <p class="p-icon">
         <ion-icon name="eye-off"></ion-icon>
       </p>
-      <p color='white' no-margin class="no-cate-p">No favorite Songs</p>
+      <p [color]='white' no-margin class="no-cate-p">No favorite Songs</p>
     </div>
 
     <div *ngIf="globals.fav_tracks.length > 0">

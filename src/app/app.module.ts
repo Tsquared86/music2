@@ -14,13 +14,13 @@ import { FcmService } from './services/fcm.service';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { MusicControls } from '@ionic-native/music-controls/ngx';
-
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), CoreModule, AppRoutingModule, HttpClientModule],
-  providers: [GlobalVariable, HttpClient, VideosPage, YoutubeVideoPlayer, SplashScreen, StatusBar, FcmService, Platform, MusicControls,
+  providers: [BackgroundMode, GlobalVariable, HttpClient, VideosPage, YoutubeVideoPlayer, SplashScreen, StatusBar, FcmService, Platform, MusicControls,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

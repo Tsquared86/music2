@@ -47,10 +47,14 @@ ion-item {
 ion-slide {
     display: block;
     text-align: left;
+    height: 300px;
+    width: 300px;
 }
  
 ion-slides {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+    
+    
 }
 
 ion-list {
@@ -62,6 +66,7 @@ ion-list {
     padding-left:20px; 
     text-align: center; 
     font-size: 14px;
+    color: #fff;
 }
 
 .p-icon{

@@ -56,32 +56,52 @@ export class VideosPage implements OnInit {
 
   getInterview() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.interviews, 'maxResults': '50', } }).toPromise().then((data: any) => {
-      this.categories[2].videos = data;
-      console.log(data);
 
+      data.items.forEach((element) => {
+        let title = '';
+        title = element.snippet.title.replace('Toeknee Tee', '');
+        element.snippet.title = title;
+      });
+      this.categories[2].videos = data;
     });
   }
 
   getClips() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.musicVids, 'maxResults': '50', } }).toPromise().then((data: any) => {
+      data.items.forEach((element) => {
+        let title = '';
+        title = element.snippet.title.replace('Toeknee Tee -', '');
+        element.snippet.title = title;
+      });
       this.categories[0].videos = data;
-
-
     });
+
+
+
   }
 
   getLive() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.live, 'maxResults': '50', } }).toPromise().then((data: any) => {
+      data.items.forEach((element) => {
+        let title = '';
+        title = element.snippet.title.replace('Toeknee Tee Live @', '');
+        element.snippet.title = title;
+      });
       this.categories[1].videos = data;
-
-
     });
+
+
+
   }
 
   getPodcast() {  //promise to get data then its data which we assign as an array fille by the get request
     this.http.get(this.url, { params: { "part": "snippet", "key": this.apiKey, "channelId": this.channel, playlistId: this.podcast, 'maxResults': '50', } }).toPromise().then((data: any) => {
+      data.items.forEach((element) => {
+        let title = '';
+        title = element.snippet.title.replace('Toeknee Tee', '');
+        element.snippet.title = title;
+      });
       this.categories[3].videos = data;
-
     });
   }
 
